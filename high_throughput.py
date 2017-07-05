@@ -22,8 +22,8 @@ img = cv2.imread('frame3.jpg')
 
 
 #create NumPy arrays from the boundaries
-low = np.array([128-10, 128-10, 128-10])
-high = np.array([224+10, 224+10, 224+10])
+low = np.array([138 -20, 132 -20, 134 -20])
+high = np.array([207+20, 206+20, 212+20])
 
 
 #find the colors within the specified boundaries and apply the mask
@@ -69,7 +69,7 @@ for rho, theta in lines[0]:
 
 # find the angle of the line
 slope = ((y2 - y1)/(x2 - x1))
-angle = 
+#angle =
 
 '''
 #gray the (x,y) coordinates of all pixel values that are greater than zero,
