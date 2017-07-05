@@ -22,8 +22,8 @@ img = cv2.imread('frame3.jpg')
 
 
 #create NumPy arrays from the boundaries
-low = np.array([128, 128, 128])
-high = np.array([224, 224, 224])
+low = np.array([128-10, 128-10, 128-10])
+high = np.array([224+10, 224+10, 224+10])
 
 
 #find the colors within the specified boundaries and apply the mask
@@ -49,7 +49,7 @@ cv2.imshow("edges", edges)
 cv2.waitKey(0)
 
 #create a variable for the lines that will be created using the HoughLines function
-lines = cv2.HoughLines(edges, 1, np.pi/180, 200)
+lines = cv2.HoughLines(edges, 1, np.pi/180, 2)
 
 for rho, theta in lines[0]:
     a = np.cos(theta)
@@ -66,6 +66,10 @@ for rho, theta in lines[0]:
 
 
     cv2.imwrite('houghlines3.jpg', img)
+
+# find the angle of the line
+slope = ((y2 - y1)/(x2 - x1))
+angle = 
 
 '''
 #gray the (x,y) coordinates of all pixel values that are greater than zero,
