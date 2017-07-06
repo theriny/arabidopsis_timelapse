@@ -16,6 +16,7 @@ import glob
 os.chdir('c:/Python27/Trevor_timelapse/3_24')
 
 frames = glob.glob('./*.jpg')
+angle_list = []
 for frame in frames:
     def angles(arg):
         img = cv2.imread(arg)
@@ -23,14 +24,14 @@ for frame in frames:
         low = np.array([89-20, 82-20, 75-20])
         high = np.array([207+20, 206+20, 212+20])
         mask = cv2.inRange(img, low, high)
-        output = cv2.bitwise_and(img, img, mask = mask)
+        #output = cv2.bitwise_and(img, img, mask = mask)
         kernel = np.ones((2,2),np.uint8)
         opening = cv2.morphologyEx(mask,cv2.MORPH_OPEN,kernel, iterations = 4)
         erode = cv2.erode(opening, kernel, iterations = 5)
         edges = cv2.Canny(erode, 150, 450, apertureSize = 3)
         lines = cv2.HoughLines(edges, 1, np.pi/180, 2)
     
-        angle_list = []
+
         for rho, theta in lines[0]:
             a = np.cos(theta)
             b = np.sin(theta)
@@ -47,14 +48,16 @@ for frame in frames:
                 slope = 90
             else:
                 slope = ((y2 - y1) / (x2 - x1))
-
+        
         theta = math.degrees(math.atan(slope))
         angle = 90 - theta
-        angle_list.append(angle)
-        
+        angle_list.append(angle)     
         print angle
+        np.hstack(angle_list)
        
     angles(frame)
+    
+    
 
 
 
