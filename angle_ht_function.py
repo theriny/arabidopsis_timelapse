@@ -54,6 +54,7 @@ for frame in frames:
         angle_list.append(angle)     
         print angle
         np.hstack(angle_list)
+        np.savetxt('angles.txt', angle_list)
        
     angles(frame)
     
