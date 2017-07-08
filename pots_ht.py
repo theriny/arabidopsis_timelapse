@@ -15,7 +15,7 @@ im = cv2.imread('frame1.jpg')
 
 #create NumPy arrays from the color gray boundaries
 low = np.array([89-20, 82-20, 75-20])
-high = np.array([207+20, 206+20, 212+20])
+high = np.array([255, 255, 255])
 
 
 #find the colors within the specified boundaries and apply the mask
@@ -27,7 +27,7 @@ kernel = np.ones((2,2),np.uint8)
 opening = cv2.morphologyEx(mask,cv2.MORPH_OPEN,kernel, iterations = 4)
 
 #use erosion to skeletonize the image
-erode = cv2.erode(opening, kernel, iterations = 1)
+erode = cv2.erode(opening, kernel, iterations = 5)
 cv2.imshow('eroded', erode)
 cv2.waitKey(0)
 
