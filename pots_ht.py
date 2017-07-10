@@ -11,7 +11,7 @@ import os
 os.chdir('c:/Python27/Trevor_timelapse/rotated')
 
 
-im = cv2.imread('frame1.jpg')
+im = cv2.imread('frame15.jpg')
 
 #create NumPy arrays from the color gray boundaries
 low = np.array([89-20, 82-20, 75-20])
@@ -22,11 +22,12 @@ high = np.array([255, 255, 255])
 mask = cv2.inRange(im, low, high)
 output = cv2.bitwise_and(im, im, mask = mask)
 
+
 #filter out the noise
 kernel = np.ones((2,2),np.uint8)
-opening = cv2.morphologyEx(mask,cv2.MORPH_OPEN,kernel, iterations = 4)
+opening = cv2.morphologyEx(mask,cv2.MORPH_OPEN,kernel, iterations = 6)
 
-#use erosion to skeletonize the image
+#use erosion to skeletonize the image (edges)
 erode = cv2.erode(opening, kernel, iterations = 5)
 cv2.imshow('eroded', erode)
 cv2.waitKey(0)
