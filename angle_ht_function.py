@@ -4,19 +4,22 @@ Created on Thu Jul 06 14:11:08 2017
 
 @author: theri
 """
-from matplotlib import pyplot as plt
+
 import numpy as np
 import cv2
 import os, os.path
-import argparse #used for image rotation
-import imutils
 import math
 import glob
+import csv
+from itertools import izip
 
 os.chdir('c:/Python27/Trevor_timelapse/3_24')
 
 frames = glob.glob('./*.jpg')
 angle_list = []
+frame_list = []
+
+
 for frame in frames:
     def angles(arg):
         img = cv2.imread(arg)
@@ -51,10 +54,13 @@ for frame in frames:
         
         theta = math.degrees(math.atan(slope))
         angle = 90 - theta
-        angle_list.append(angle)     
+        angle_list.append(angle)
+        frame_list.append(arg)
         print angle
-        np.hstack(angle_list)
-        np.savetxt('angles.txt', angle_list)
+        #np.savetxt('angles.txt', angle_list)
+        with open('angles.csv', 'wb') as a:
+            writer = csv.writer(a)
+            writer.writerows(izip(frame_list, angle_list))
        
     angles(frame)
     
