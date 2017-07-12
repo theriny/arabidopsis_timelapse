@@ -26,6 +26,8 @@ import cv2
 import numpy as np
 import math
 import glob
+import csv
+from itertools import izip
 ```
 
 * "os" is module for path name manipulation
@@ -33,6 +35,8 @@ import glob
 * "np" is module for scientific computing
 * "math" is module for mathematic functions
 * "glob" is module that finds pathnames matching a pattern
+* "csv" is module that implements classes to read and write tabular data in CSV format
+* "izip" is module that aggregate elements from each of the iterables
 
 **2. Set the working directory to where images are located**
 ```Python
@@ -44,9 +48,10 @@ os.chdir('c:/Python27/Trevor_timelapse/3_24')
 ```Python
 frames = glob.glob('./*.jpg')
 ```
-**4. Create list to store calculated angles**
+**4. Create lists to store calculated angles and their respective frame number**
 ```Python
 angle_list = []
+frame_lsit = []
 ```
 **5. Loop through the frame images, Define the angles function, Detect lines, Find slope of lines**
 
@@ -111,12 +116,17 @@ Define the function "angles" and its argument "arg"
    ```Python     
         theta = math.degrees(math.atan(slope))
         angle = 90 - theta
-        angle_list.append(angle)     
+        angle_list.append(angle)
+        frane_list.append(arg)
         print angle
-        np.hstack(angle_list)
-        np.savetxt('angles.txt', angle_list)
+        with open('angles.csv', 'wb') as a:
+        	writer = csv.writer(a)
+            writer.writerows(izip(frame_list, angle_list))
 ```
-
+Call function
+```Python
+angles(frame)
+```
 
 
 
