@@ -6,10 +6,8 @@ Created on Mon Jul 24 11:00:02 2017
 """
 
 from angle_ht_function import find_angles
-from itertools import izip
 
 
-write.writerows(izip(arg1, arg2))  
 
 
 
