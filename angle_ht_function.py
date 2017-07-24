@@ -19,11 +19,11 @@ frames = glob.glob('./*.jpg')
 angle_list = []
 frame_list = []
 
-
+rgb = cv2.imread('frame1.jpg')
 for frame in frames:
     def angles(arg):
         img = cv2.imread(arg)
-    
+        global frame
         low = np.array([89-20, 82-20, 75-20])
         high = np.array([207+20, 206+20, 212+20])
         mask = cv2.inRange(img, low, high)
@@ -59,10 +59,10 @@ for frame in frames:
         print angle
         #np.savetxt('angles.txt', angle_list)
         with open('angles.csv', 'wb') as a:
-            writer = csv.writer(a)
-            writer.writerows(izip(frame_list, angle_list))
+            write = csv.writer(a)
+            write.writerows(izip(frame_list, angle_list))
        
-    angles(frame)
+    angles(frame) #must be present in order to run the function "angles" from another .py file
     
     
 
