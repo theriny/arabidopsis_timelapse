@@ -21,7 +21,7 @@ frame_list = []
 
 rgb = cv2.imread('frame1.jpg')
 for frame in frames:
-    def angles(arg):
+    def find_angles(arg):
         img = cv2.imread(arg)
         global frame
         low = np.array([89-20, 82-20, 75-20])
@@ -62,7 +62,7 @@ for frame in frames:
             write = csv.writer(a)
             write.writerows(izip(frame_list, angle_list))
        
-    angles(frame) #must be present in order to run the function "angles" from another .py file
+    find_angles(frame) #must be present in order to run the function "angles" from another .py file
     
     
 
