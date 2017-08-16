@@ -13,7 +13,7 @@ import glob
 import csv
 from itertools import izip
 
-os.chdir('c:/Python27/Trevor_timelapse/3_24')
+os.chdir('C:/Users/theriny/Dropbox/Trevor_timelapse/extracted_frames3')
 
 frames = glob.glob('./*.jpg')
 angle_list = []
@@ -23,8 +23,8 @@ for frame in frames:
     def find_angles(arg):
         img = cv2.imread(arg)
         global frame
-        low = np.array([89-20, 82-20, 75-20])
-        high = np.array([207+20, 206+20, 212+20])
+        low = np.array([75-20, 82-20, 89-20])
+        high = np.array([212+20, 206+20, 207+20])
         mask = cv2.inRange(img, low, high)
         #output = cv2.bitwise_and(img, img, mask = mask)
         kernel = np.ones((2,2),np.uint8)

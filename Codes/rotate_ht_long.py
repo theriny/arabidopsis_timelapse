@@ -8,10 +8,10 @@ Created on Fri Jul 07 13:12:13 2017
 import cv2
 import os, os.path
 import glob
-from angle_ht_function import angle_list
+from angle_ht_long import angle_list
 
-os.chdir('c:/Python27/Trevor_timelapse/3_24')
-dirname = 'C:/Python27/Trevor_timelapse/rotated'
+os.chdir('C:/Users/theriny/Dropbox/Trevor_timelapse/extracted_frames3')
+dirname = 'C:/Users/theriny/Dropbox/Trevor_timelapse/extracted_frames3/rotated'
 os.mkdir(dirname)
 frames = glob.glob('./*.jpg')
 
@@ -26,4 +26,5 @@ while (count < len(frames)):
                 dst = cv2.warpAffine(img,M,(cols,rows))
                 cv2.imwrite(os.path.join(dirname, "frame%d.jpg" % count), dst)
         count += 1
+            
         rotate_image(frame, angle)
